@@ -4,6 +4,7 @@ runAnalysis <- function() {
   library(data.table)
   library(dplyr)
   
+  ## Read files
   xTrain <- read.table("./data/UCI HAR Dataset/train/X_train.txt",sep="",dec=".")
   yTrain <- read.table("./data/UCI HAR Dataset/train/Y_train.txt",sep="",dec=".")
   subjectTrain <- read.table("./data/UCI HAR Dataset/train/subject_train.txt",sep="",dec=".")
@@ -13,10 +14,13 @@ runAnalysis <- function() {
   
   features <- read.table("./data/UCI HAR Dataset/features.txt",sep="",dec=".")
   
+  # combine files by column
   train <- cbind(subjectTrain,yTrain,xTrain)
   test <- cbind(subjectTest,yTest,xTest)
   
+  # combine files per row
   combined <- rbind(test,train)
+  # add column names
   colnames(combined) <- c("Subject","Activity",c(make.unique(as.vector(features[,2]))))
 
   
@@ -42,7 +46,8 @@ meanStd$Activity[meanStd$Activity==6] <- "LAYING"
 
 grouped <- group_by(meanStd,Activity,Subject)
 summarise_each(grouped,funs(mean))
-write.table(summarise_each(grouped,funs(mean)),row.name=FALSE,file="./data/assignment_result.txt")
+# Uncomment to create file
+##write.table(summarise_each(grouped,funs(mean)),row.name=FALSE,file="./data/assignment_result.txt")
 
 }
 
