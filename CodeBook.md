@@ -78,12 +78,12 @@ The result datatable contains the following columns:
 * fBodyBodyGyroJerkMag-std()
 
 The Activity column create one of the following values describing the activity that was performed during the excercise:
-*WALKING
-*WALKING_UPSTAIRS
-*WALKING_DOWNSTAIRS
-*SITTING
-*STANDING
-*LAYING
+* WALKING
+* WALKING_UPSTAIRS
+* WALKING_DOWNSTAIRS
+* SITTING
+* STANDING
+* LAYING
 
 The Subject column contains the id of the subject(person)
 
